@@ -64,4 +64,6 @@ class ToDoCell: UITableViewCell {
 
 </details>
 
+### GIF
+
 ![To-Do-Gif](Assets/ToDoList-Gif.gif)
