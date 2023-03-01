@@ -15,6 +15,7 @@
 		4015F97C29AE9E2F00D3DE83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4015F97A29AE9E2F00D3DE83 /* LaunchScreen.storyboard */; };
 		4015F98429AE9F2800D3DE83 /* ToDoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F98329AE9F2800D3DE83 /* ToDoModel.swift */; };
 		4015F98629AEE40C00D3DE83 /* CreateToDoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F98529AEE40C00D3DE83 /* CreateToDoController.swift */; };
+		4015F98829AFBD8900D3DE83 /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F98729AFBD8900D3DE83 /* ToDoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		4015F97D29AE9E2F00D3DE83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4015F98329AE9F2800D3DE83 /* ToDoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModel.swift; sourceTree = "<group>"; };
 		4015F98529AEE40C00D3DE83 /* CreateToDoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoController.swift; sourceTree = "<group>"; };
+		4015F98729AFBD8900D3DE83 /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				4015F97129AE9E2E00D3DE83 /* SceneDelegate.swift */,
 				4015F97329AE9E2E00D3DE83 /* ToDoTableView.swift */,
 				4015F98529AEE40C00D3DE83 /* CreateToDoController.swift */,
+				4015F98729AFBD8900D3DE83 /* ToDoCell.swift */,
 				4015F98329AE9F2800D3DE83 /* ToDoModel.swift */,
 				4015F97529AE9E2E00D3DE83 /* Main.storyboard */,
 				4015F97829AE9E2F00D3DE83 /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 				4015F97429AE9E2E00D3DE83 /* ToDoTableView.swift in Sources */,
 				4015F98629AEE40C00D3DE83 /* CreateToDoController.swift in Sources */,
 				4015F98429AE9F2800D3DE83 /* ToDoModel.swift in Sources */,
+				4015F98829AFBD8900D3DE83 /* ToDoCell.swift in Sources */,
 				4015F97029AE9E2E00D3DE83 /* AppDelegate.swift in Sources */,
 				4015F97229AE9E2E00D3DE83 /* SceneDelegate.swift in Sources */,
 			);

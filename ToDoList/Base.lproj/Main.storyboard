@@ -16,13 +16,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="toDoCell" id="wxO-AO-Gha">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="toDoCell" id="wxO-AO-Gha" customClass="ToDoCell" customModule="ToDoList" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="36.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wxO-AO-Gha" id="62A-Tn-DQ4">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="36.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8T-Yd-9rM">
+                                            <rect key="frame" x="8" y="-3.6666666666666679" width="44" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="Psn-Vx-D2I"/>
+                                                <constraint firstAttribute="height" constant="44" id="bMD-kk-vMB"/>
+                                            </constraints>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="circle" catalog="system">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                                            </state>
+                                            <state key="selected" image="checkmark.circle.fill" catalog="system">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="completeButtonPressed:" destination="wxO-AO-Gha" eventType="touchUpInside" id="RbU-Af-gvh"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Nd-dV-vZ1">
+                                            <rect key="frame" x="60" y="8.0000000000000018" width="325" height="20.666666666666671"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="J8T-Yd-9rM" firstAttribute="leading" secondItem="62A-Tn-DQ4" secondAttribute="leading" constant="8" id="8ks-6w-LtM"/>
+                                        <constraint firstAttribute="bottom" secondItem="2Nd-dV-vZ1" secondAttribute="bottom" constant="8" id="HBs-ck-xqx"/>
+                                        <constraint firstAttribute="trailing" secondItem="2Nd-dV-vZ1" secondAttribute="trailing" constant="8" id="Qy3-7d-2ef"/>
+                                        <constraint firstItem="J8T-Yd-9rM" firstAttribute="centerY" secondItem="62A-Tn-DQ4" secondAttribute="centerY" id="ZJQ-HT-QiN"/>
+                                        <constraint firstItem="2Nd-dV-vZ1" firstAttribute="top" secondItem="62A-Tn-DQ4" secondAttribute="top" constant="8" id="qX3-cT-R4F"/>
+                                        <constraint firstItem="2Nd-dV-vZ1" firstAttribute="leading" secondItem="J8T-Yd-9rM" secondAttribute="trailing" constant="8" id="rIa-tm-Mvb"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="isCompleteButton" destination="J8T-Yd-9rM" id="gBx-EY-p23"/>
+                                    <outlet property="titleLabel" destination="2Nd-dV-vZ1" id="6bH-GW-tHb"/>
+                                    <segue destination="r3w-FM-mXf" kind="presentation" id="cxI-c3-dvS"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -130,7 +168,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="GZl-DV-zwe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="217"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="216.33333333333334"/>
                                                     <connections>
                                                         <action selector="datePickerChanged:" destination="ssX-nk-WOD" eventType="valueChanged" id="F0B-xa-nou"/>
                                                     </connections>
@@ -234,7 +272,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ssX-nk-WOD" kind="relationship" relationship="rootViewController" id="c7u-eM-NY7"/>
+                        <segue destination="ssX-nk-WOD" kind="relationship" relationship="rootViewController" destinationCreationSelector="editToDo:sender:" id="c7u-eM-NY7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VeW-IB-WyE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -242,6 +280,9 @@
             <point key="canvasLocation" x="1430" y="55"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="BH8-V4-6UY"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="circle" catalog="system" width="128" height="123"/>

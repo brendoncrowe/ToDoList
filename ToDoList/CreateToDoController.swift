@@ -9,7 +9,6 @@ import UIKit
 
 class CreateToDoController: UITableViewController {
     
-    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var isCompleteButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
@@ -17,7 +16,7 @@ class CreateToDoController: UITableViewController {
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    var toDo: ToDo?
+    public var toDo: ToDo?
     
     private var datePickerIsHidden = true
     private let dateLabelIndexPath = IndexPath(row: 0, section: 1)
@@ -26,14 +25,23 @@ class CreateToDoController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateSaveButtonState()
         titleTextField.delegate = self
         
         // Multiply 24 by 60 to convert hours into minutes, then multiply by 60 again to convert minutes into seconds and get the total time in seconds for a day.
+        let currentDueDate: Date
+        if let toDo = toDo {
+            navigationItem.title = "To-Do"
+            titleTextField.text = toDo.title
+            isCompleteButton.isSelected = toDo.isComplete
+            currentDueDate = toDo.dueDate
+            notesTextView.text = toDo.notes
+        } else {
+            currentDueDate = Date().addingTimeInterval(24*60*60)
+        }
         
-        datePicker.date = Date().addingTimeInterval(24*60*60)
-        updateDateLabel(date: datePicker.date)
-        
+        datePicker.date = currentDueDate
+        updateDateLabel(date: currentDueDate)
+        updateSaveButtonState()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,7 +52,14 @@ class CreateToDoController: UITableViewController {
         let dueDate = datePicker.date
         let notes = notesTextView.text
         
-        toDo = ToDo(title: title, icComplete: isComplete, dueDate: dueDate, notes: notes)
+        if toDo != nil {
+            toDo?.title = title
+            toDo?.isComplete = isComplete
+            toDo?.dueDate = dueDate
+            toDo?.notes = notes
+        } else {
+            toDo = ToDo(title: title, isComplete: isComplete, dueDate: dueDate, notes: notes)
+        }
     }
     
     private func updateDateLabel(date: Date) {
@@ -97,9 +112,6 @@ class CreateToDoController: UITableViewController {
             tableView.endUpdates()
         }
     }
-    
-    
-    
 }
 
 extension CreateToDoController: UITextFieldDelegate {
@@ -111,5 +123,4 @@ extension CreateToDoController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
-    
 }

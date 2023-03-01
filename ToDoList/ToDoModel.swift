@@ -7,25 +7,44 @@
 
 import UIKit
 
-struct ToDo: Equatable {
-    let id = UUID()
-    let title: String
-    let icComplete: Bool
-    let dueDate: Date
-    let notes: String?
+struct ToDo: Equatable & Codable {
+    let id: UUID
+    var title: String
+    var isComplete: Bool
+    var dueDate: Date
+    var notes: String?
+    
+    init(title: String, isComplete: Bool, dueDate: Date, notes: String?) {
+        self.id = UUID()
+        self.title = title
+        self.isComplete = isComplete
+        self.dueDate = dueDate
+        self.notes = notes
+    }
+    
+    static let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    static let fileURL = documentsDirectory.appending(path: "toDos").appendingPathExtension(".plist")
     
     static func == (lhs: ToDo, rhs: ToDo) -> Bool {
         return lhs.id == rhs.id
     }
     
     static func loadData() -> [ToDo]? {
-        return nil
+        guard let savedToDos = try? Data(contentsOf: fileURL) else { return nil }
+        let propertyListDecoder = PropertyListDecoder()
+        return try? propertyListDecoder.decode([ToDo].self, from: savedToDos)
+    }
+    
+    static func saveToDos(_ toDos: [ToDo]) {
+        let propertyListEncoder = PropertyListEncoder()
+        let savedToDos = try? propertyListEncoder.encode(toDos)
+        try? savedToDos?.write(to: fileURL, options: .noFileProtection)
     }
     
     static func loadTestData() -> [ToDo] {
-        let toDo1 = ToDo(title: "Workout", icComplete: false, dueDate: Date(), notes: "Notes 1")
-        let toDo2 = ToDo(title: "Study", icComplete: false, dueDate: Date(), notes: "Notes 2")
-        let toDo3 = ToDo(title: "Cook", icComplete: false, dueDate: Date(), notes: "Notes 3")
+        let toDo1 = ToDo(title: "Workout", isComplete: false, dueDate: Date(), notes: "Notes 1")
+        let toDo2 = ToDo(title: "Study", isComplete: false, dueDate: Date(), notes: "Notes 2")
+        let toDo3 = ToDo(title: "Cook", isComplete: false, dueDate: Date(), notes: "Notes 3")
         
         return [toDo1, toDo2, toDo3]
     }
